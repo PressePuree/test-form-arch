@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+import Form from "./components/form"
+import Select from "./components/select"
+import TextInput from "./components/text-input"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const initialValues = {
+  textVar: "",
+  selectedOption: "option1"
 }
 
-export default App;
+type ThatFormValues = {
+  textVar: string
+  selectedOption: string
+}
+
+export default function App() {
+  return (
+    <>
+      <Form<ThatFormValues>
+        initialValues={initialValues}
+        onSubmit={(values) => console.log(values)}
+      >
+        <TextInput name="textVar" label="Text Input" />
+        <Select
+          name="selectedOption"
+          label="Select something"
+          options={[
+            { value: "option1", label: "Option 1" },
+            { value: "option2", label: "Option 2" }
+          ]}
+        ></Select>
+        <button type="submit">Submit</button>
+      </Form>
+    </>
+  )
+}
